@@ -1,6 +1,10 @@
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 from langchain.chat_models import init_chat_model
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 tagging_prompt = ChatPromptTemplate.from_template(
     """
@@ -22,7 +26,7 @@ class Classification(BaseModel):
 
 
 
-llm = init_chat_model(model="gemini-1.5-pro", model_provider="google_genai",api_key ="AIzaSyBSIy8puMYpb21B9FRYymUhzMK01EOR6ao").with_structured_output(
+llm = init_chat_model(model="gemini-1.5-pro", model_provider="google_genai",api_key =os.getenv("GOOGLE_API_KEY")).with_structured_output(
     Classification
 )
 

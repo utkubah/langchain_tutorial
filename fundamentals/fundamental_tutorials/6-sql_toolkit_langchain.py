@@ -10,6 +10,11 @@ from sqlalchemy.pool import StaticPool
 from langgraph.prebuilt import create_react_agent
 from langchain import hub
 from langchain.chat_models import init_chat_model   
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 
 
 def get_engine_for_chinook_db() -> Engine:
@@ -32,7 +37,7 @@ async def main() -> None:
     db = SQLDatabase(engine)
 
     # Create the toolkit
-    llm = init_chat_model(model="gemini-1.5-pro", model_provider="google_genai",api_key ="AIzaSyBSIy8puMYpb21B9FRYymUhzMK01EOR6ao")
+    llm = init_chat_model(model="gemini-2.0-flash-lite", model_provider="google_genai",api_key =os.getenv("GOOGLE_API_KEY"))
     toolkit = SQLDatabaseToolkit(db=db, llm=llm)
 
     tools = toolkit.get_tools()

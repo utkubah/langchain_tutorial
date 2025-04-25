@@ -13,7 +13,9 @@ llm = init_chat_model(model="gemini-1.5-pro", model_provider="google_genai",api_
 #özel mesaj tipleri ve promptlar
 messages = [
     SystemMessage("Translate the following from English into Italian"),
-    HumanMessage("hi!"),
+    HumanMessage("How are you?"),
+    AIMessage("Come stai?"),
+    HumanMessage("hi!")
 ]
 
 response = llm.invoke(messages)
