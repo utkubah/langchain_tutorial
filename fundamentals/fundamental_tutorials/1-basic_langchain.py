@@ -6,11 +6,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+from langchain_google_genai import ChatGoogleGenerativeAI
 
-#init_chat model açıklaması
-llm = init_chat_model(model="gemini-1.5-pro", model_provider="google_genai",api_key=os.getenv("GOOGLE_API_KEY"))
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.0-flash-lite",
+    google_api_key= os.getenv("GOOGLE_API_KEY")
+)
 
-#özel mesaj tipleri ve promptlar
+
 messages = [
     SystemMessage("Translate the following from English into Italian"),
     HumanMessage("How are you?"),
@@ -23,7 +26,6 @@ print(response.content)
 
 
 
-#prompt template
 from langchain_core.prompts import ChatPromptTemplate
 
 system_template = "Translate the following from English into {language}"

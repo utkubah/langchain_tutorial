@@ -1,6 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
-from langchain.chat_models import init_chat_model
 from dotenv import load_dotenv
 import os
 
@@ -25,14 +24,18 @@ class Classification(BaseModel):
     language: str = Field(description="The language the text is written in")
 
 
+from langchain_google_genai import ChatGoogleGenerativeAI
 
-llm = init_chat_model(model="gemini-1.5-pro", model_provider="google_genai",api_key =os.getenv("GOOGLE_API_KEY")).with_structured_output(
-    Classification
+llm = ChatGoogleGenerativeAI(
+    model="gemini-2.0-flash",
+    google_api_key= os.getenv("GOOGLE_API_KEY")
 )
+
+llm = llm.with_structured_output(Classification)
 
 inp = "Estoy muy enojado con vos! Te voy a dar tu merecido!"
 prompt = tagging_prompt.invoke({"input": inp})
+
 response = llm.invoke(prompt)
 
 print(response)
-
