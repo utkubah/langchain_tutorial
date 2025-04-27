@@ -9,14 +9,14 @@ langgraph==0.3.34
 google-genai
 langchain-google-genai
 
-# Hugging Face integration (fixed)
 langchain-huggingface==0.1.2
+langchain_mcp_adapters
 
-# Hugging Face Hub & embeddings
 huggingface_hub==0.30.2
 sentence-transformers==4.1.0
 faiss-cpu==1.10.0
 chromadb==1.0.7
+requests
 
 # PDF handling
 pypdf==5.4.0
