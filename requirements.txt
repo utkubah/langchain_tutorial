@@ -8,6 +8,7 @@ langgraph==0.3.34
 # Google Gemini integration
 google-genai
 langchain-google-genai
+langgraph-supervisor
 
 langchain-huggingface==0.1.2
 langchain_mcp_adapters
